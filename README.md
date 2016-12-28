@@ -1,6 +1,7 @@
 <img src="https://raw.githubusercontent.com/pulp-platform/pulpino/master/doc/datasheet/figures/pulpino_logo_inline1.png" width="400px" />
 
 # Introduction
+# 简介
 
 PULPino is an open-source microcontroller system, based on a small 32-bit
 RISC-V core developed at ETH Zurich. The core has an IPC close to 1, full
@@ -9,27 +10,47 @@ support for the base integer instruction set (RV32I), compressed instructions
 extension (RV32M). It implements several ISA extensions such as:
 hardware loops, post-incrementing load and store instructions, ALU and MAC
 operations, which increase the efficiency of the core in low-power signal
-processing applications.
+processing applications.  
 
+------
+
+PULPino是一个在ETH Zurich基于小型32位RISC-V内核的开源微控制器系统。此内核拥有接近1的IPC，完全支持基整数指令集(RV32I)，压缩指令集(RV32C)以及部分支持扩展乘法指令集(RV32M)。
+
+------  
 To allow embedded operating systems such as FreeRTOS to run, a subset of the
 privileged specification is supported. When the core is idle, the platform can
 be put into a low power mode, where only a simple event unit is active and
 everything else is clock-gated and consumes minimal power (leakage). A
 specialized event unit wakes up the core in case an event/interrupt arrives.
 
+------
+为了能够运行诸如FreeRTOS的嵌入式操作系统
+
+------
+
 For communication with the outside world, PULPino contains a broad set of
 peripherals, including I2S, I2C, SPI and UART. The platform internal devices
 can be accessed from outside via JTAG and SPI which allows pre-loading
 RAMs with executable code. In standalone mode, the platform boots from an
-internal boot ROM and loads its program from an external SPI flash.
+internal boot ROM and loads its program from an external SPI flash.  
+
+------
+为了和外部进行通信，PULPino包含了一系列外设，包括I2S,I2C,SPI以及UART.
+
+------
 
 The PULPino platform is available for RTL simulation as well FPGA.
 PULPino has been taped-out as an ASIC in UMC 65nm in January 2016. It has full
 debug support on all targets. In addition we support extended profiling with
 source code annotated execution times through KCacheGrind in RTL simulations.
 
+------
+PULPino平台可以在FPGA上进行RTL仿真。PULPino在2016年1月份已经进行了一次ASIC的tape-out，采用的是UMC的65nm的工艺。
+
+------
 
 ## Requirements
+## 需求
 
 PULPino has the following requirements
 
@@ -43,7 +64,15 @@ PULPino has the following requirements
   Please make sure you are using the newlib version of the toolchain.
 - python2 >= 2.6
 
+------
+
+PULPino对环境有以下需求
+
+------
+
+
 ## Editions
+## 发行版本
 
 There are two PULPino editions available, one for OR1K based on the OR10N core
 and one for RISCV based on the RI5CY core. Only the RISC-V based version is
@@ -58,6 +87,7 @@ defaults to riscv when not set.
 
 
 ## Version Control
+## 版本控制
 
 PULPino uses multiple git subrepositories
 
@@ -70,6 +100,7 @@ specified in there. You can choose specific commits, tags or branches.
 
 
 ## Documentation
+## 文档
 
 There is a preliminary datasheet available that includes a block diagram and a memory map of PULPino.
 See docs/datasheet/ in this repository.
@@ -82,6 +113,7 @@ inside the folder to generate the pdf. Note that you need a working version of l
 
 
 ## Running simulations
+## 仿真运行
 
 The software is built using CMake.
 Create a build folder somewhere, e.g. in the sw folder
@@ -147,19 +179,25 @@ To regenerate the bootcode and copy it to the `rtl` folder use
     make boot_code.install
 
 ## FPGA
+## FPGA支持
 
 PULPino can be synthesized and run on a ZedBoard.
 Take a look at the `fpga` subfolder for more information.
 
 ## Creating a tarball of the PULPino sources
-
+## 创建源代码压缩包
 If for some reason you don't want to use the git sub-repository approach, you
 can create a tarball of the whole design by executing `./create-tarball.py`.
 This will download the latest PULPino sources, including all IPS, remove the
 git internal folders and create a tar gz.
 
+------
+如果你因为某些原因不想使用git子仓库的方式来获取相关内容，你可以使用`./create-taball.py`脚本来为整个设计创建一个tarball。这样它会下载最近的PULPino源代码，包括所有的IPS，并且移除所有的git内部文件，然后创建一个tar压缩包。  
+
+------
 
 ## Arduino compatible libraries
+## Arduino兼容库
 
 Most of official Arduino libraries are supported by PULPino software, they can be compiled, simulated and uploded the same way as traditional software programs using the available PULPino utilities.
 You only need to include main.cpp at the begining of the program:
